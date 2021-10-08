@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />    
+    <title>Quiz Challenge</title>
+</head> 
+
+<body>
+    <!--Landing section-->
+    <div id="start">
+        <h1 class="title">Coding Quiz Challenge</h1>
+        <h4>Try to answer the following questions within the time limit.</h4>
+        <h4>The incorrect answers will penallize your score-time by 10 seconds</h4>
+        <div id="start-btn">Start Quiz</div>
+    </div>
+
+    <!--Quiz section-->            
+    <div id="quiz-container" class="hide"> 
+        <div class="quiz_header">  
+            <div class="timer">
+                <h6>Time Left_</h6>
+                <h6 id="time">00</h6>
+            </div> 
+            <!--Every question is different, will generate via js-->
+            <h2 id="quiz_status"></h2>           
+            <div id="quiz"></div>  
+ 
+        </div>    
+
+        <p class="divided"></p>
+        <div id="answerSection">
+            <div  id="total_correct" ></div>   
+            <button  id="answer-btn" class="btn" >Next</button>
+        </div>            
+    </div> 
+
+     <!--Ending Page-->
+    <div id="submit" class="hide">       
+        <h1>All Done!</h1>
+        <h4 id="points">Your Final Score Is: </h4> 
+        <label for="input-name" class="name">Enter initials </label>
+        <input id="input-name" type="text" size="40">
+        <button id="submit_btn" type="submit">Submit</button>         
+    </div>
+
+    <!--Highscores Page-->
+    <div id="result" class="hide">        
+        <h1>Highscores</h1>
+        <label class="high-score" for="input-result"> Your Score is:</label>
+        <input id="points" type="text" size="60px">
+        <div class="endGame-btn">
+            <button class="btn" id="startAgain" type="submit">Go back</button>
+            <button class="btn" id="quit" type="submit">Clear Highscores</button>
+        </div>
+    </div>    
+    
+    <script src="./questions.js"></script>       
+    <script src="./script.js"></script>  
+    
+</body>
+</html>
