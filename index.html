@@ -4,61 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />    
-    <title>Quiz Challenge</title>
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">"
+    <link rel="stylesheet" href="./style.css" />
 </head> 
-
 <body>
-    <!--Landing section-->
-    <div id="start">
-        <h1 class="title">Coding Quiz Challenge</h1>
-        <h4>Try to answer the following questions within the time limit.</h4>
-        <h4>The incorrect answers will penallize your score-time by 10 seconds</h4>
-        <div id="start-btn">Start Quiz</div>
-    </div>
+    <div class="container d-flex justify-content-center mt-5">
+        
+        <div class="game-box col-lg-8 p-4">
+            <div class="row pb-4">
+                <div class="col-lg-4">
+                    <h2 class="code-title">Code-Quiz</h2>
+                    
+                </div>
+                <hr>
+                <div class="col-lg-4"></div>
 
-    <!--Quiz section-->            
-    <div id="quiz-container" class="hide"> 
-        <div class="quiz_header">  
-            <div class="timer">
-                <h6>Time Left_</h6>
-                <h6 id="time">00</h6>
-            </div> 
-            <!--Every question is different, will generate via js-->
-            <h2 id="quiz_status"></h2>           
-            <div id="quiz"></div>  
- 
-        </div>    
+                <div class="col-lg-4">
+                    <h4 class="float-right text-primary d-none" id="timecounter">Timer :<span id="timer">75</span></h4>
 
-        <p class="divided"></p>
-        <div id="answerSection">
-            <div  id="total_correct" ></div>   
-            <button  id="answer-btn" class="btn" >Next</button>
-        </div>            
-    </div> 
+                </div>
+            </div>
+            <div class="quiz-questions d-none" id="quiz-questions">
+                <h2 class="text-info  text-center" id="title-item"></h2>
+                <div class="answers mt-5 mb-5" id="question-answers"> </div>
+               
+                <h1 id="alert"></h1>
+                
+            </div>
+            <div class="btnstart d-flex  flex-column justify-content-center mt-8 mb-10" > 
+                <p id="info">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by 15 seconds.
+                </p>
+                <button class="btn btn-primary btn-lg" id="btn-start">Start Quiz</button>
+                
+            </div>
+            
+            <div class=" input-group mb-3 d-none" id="addscore">
+                <h5 class="d-block"><span id="score"></span></h5>
+                    <input type="text" class="form-control" placeholder="Enter your initials:"
+                    id="inputScore" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn btn-primary" id="btnScore">Submit</button>
 
-     <!--Ending Page-->
-    <div id="submit" class="hide">       
-        <h1>All Done!</h1>
-        <h4 id="points">Your Final Score Is: </h4> 
-        <label for="input-name" class="name">Enter initials </label>
-        <input id="input-name" type="text" size="40">
-        <button id="submit_btn" type="submit">Submit</button>         
-    </div>
-
-    <!--Highscores Page-->
-    <div id="result" class="hide">        
-        <h1>Highscores</h1>
-        <label class="high-score" for="input-result"> Your Score is:</label>
-        <input id="points" type="text" size="60px">
-        <div class="endGame-btn">
-            <button class="btn" id="startAgain" type="submit">Go back</button>
-            <button class="btn" id="quit" type="submit">Clear Highscores</button>
+                    </div>
+            </div>
         </div>
-    </div>    
-    
-    <script src="./questions.js"></script>       
-    <script src="./script.js"></script>  
-    
+    </div>
+               
+
+    <script src="script.js"></script>             
+         
+   
 </body>
-</html>
+</html>  
+    
+

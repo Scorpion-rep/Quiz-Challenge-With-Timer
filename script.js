@@ -1,142 +1,167 @@
-const startSection = document.getElementById("start");
-const quizContainer = document.getElementById("quiz-container");
-const timeEl = document.getElementById("time");
-const startBtn = document.getElementById("start")
+const quizQuestions = document.getElementById("quiz-questions");
+const timer = document.getElementById("timer");
+const btnStart = document.getElementById("btn-start");
+const timeCounter = document.getElementById("timecounter");
+const titleItem = document.getElementById("title-item");
+const questionAnswers = document.getElementById("question-answers");
+const myScore = document.getElementById("score");
+const btnScore = document.getElementById("btnScore");
+const addScore = document.getElementById("addscore")
+const alert = document.getElementById("alert");
+const info = document.getElementById("info");
 
-const submitSection = document.getElementById("submit");
-const submitBtn = document.getElementById("submit");
-const resultSection = document.getElementById("result");
-const nextBtn = document.getElementById("answer-btn")
+let currentIndex = 0;
+let score = 0;
+let count = 50;
+let allScores = [];
+let storedScores = JSON.parse(localStorage.getItem("userData"));
+let intervalId = null;
 
-// Timer
-let intervalID = null;
-let timeRemaining = 20;
+let questions = [
+    {
+        title: "A very useful tool used during development and debugging for printing content to the debugger is:---",
+        choices: ["JavaScript","terminal/bash","alerts", "console.log"],
+        answer : "console.log"     
+    },
+    {
+        title: "String values must be enclosed within --- when being assigned to variables ",
+        choices: ["commas","curly brackets","quotes","parentheses"],
+        answer : "quotes"  
+    },
+    {
+        title: "Arrays in JavaScript can be used to store:---",
+        choices: ["numbers and strings","others Arrays","booleances", "all of the above"],
+        answer : "all of the above"    
+    },
+    {
+        title: "The condition in an if/else statement is enclosed within:---",
+        choices: ["quotes","Curly brackets","parentheses", "square brackets"],
+        answer : "parentheses"  
+    },
+    {
+        title: "Commonly used data type Do Not include:---",
+        choices: ["strings","booleance","alerts", "numbers"],
+        answer : "alerts"    
+    }
+]
 
-// innitial variables
-let pos = 0;
-let correct = 0;
-let quiz, quiz_status, question,choice, choices, choiceA, choiceB, choiceC, choiceD;
+// start the game
+btnStart.addEventListener("click", startQuiz);
 
+function startQuiz() {
+    if(storedScores !==null) {
+        allScores = storedScores;
+    }
 
-function startTimer() {
-    intervalID = setInterval(function () {
-        console.log();
-        timeRemaining = timeRemaining -1;
+    info.classList.add("d-none")
+    btnStart.classList.add("d-none")
+    timeCounter.classList.remove("d-none")
+    quizQuestions.classList.remove("d-none")
 
-        if (timeRemaining < 0) {
-            return endGame();
+    nextQuestions = questions[currentIndex]
+    console.log(nextQuestions.title)
+
+    displayQuestion(nextQuestions)
+
+    gameTime()
+
+}
+
+btnScore.addEventListener("click", function() {
+
+    let name = document.getElementById("inputScore").value
+    scorePage(name, count)
+});
+
+// Time set
+function gameTime() {
+
+    timeInterval = setInterval(function() {
+        timer.innerText = count
+        count--;
+
+        if (count < 0 ) {
+            return endgame()
         }
-
-        //update timer div
-        timeEl.textContent = timeRemaining;
     }, 1000);
+
 }
 
-startBtn.addEventListener("click", function(event) {
-    event.preventDefault()
-    //timer starts
-    startTimer()
-    // remove landing section and display quiz section   
-    quizContainer.classList.remove("hide");
-    startSection.classList.add("hide");
-})
+function scorePage(a, b) {
 
-function get(x) {
-    return document.getElementById(x);
+    let userData = {
+        inits: a,
+        userScore: b
+    };
+    allScores.push(userData);
+
+    localStorage.setItem("userData", JSON.stringify(allScores));
+    location.href = "score.html";
 }
 
-// function renders question for display on the page
-function renderQuestion () {
-    quiz = get("quiz");
-    
-    if(pos >= questions.length) {
-        quiz.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
-        get ("quiz_status").innerHTML = "Test completed";
+function displayQuestion(question) {
+    titleItem.innerText = question.title
+    question.choices.forEach(element => {
+        const button = document.createElement("button")
+        button.className = "btn-primary btn-block text-left"
+        button.innerText = element
 
-        //reset the variable to allow users to restart the quiz
-        pos = 0;
-        correct = 0;
-        // to stop rest of renderQuestion function running when the test is completed
-        return false;
-    }
-
-    get("quiz_status").innerHTML = "Question "+(pos+1)+" of "+questions.length;
-
-    question = questions[pos].question;
-    choiceA = questions[pos].a;
-    choiceB = questions[pos].b;
-    choiceC = questions[pos].c;
-    choiceD = questions[pos].d;
-
-    //display the question
-    quiz.innerHTML = "<h3>"+question+"</h3>";
-
-    // display the question
-    quiz.innerHTML += "<label> <input type='radio' name='choices' value='A'>"+choiceA+"</label><br>";
-    quiz.innerHTML += "<label> <input type='radio' name='choices' value='B'>"+choiceB+"</label><br>";
-    quiz.innerHTML += "<label> <input type='radio' name='choices' value='C'>"+choiceC+"</label><br>";
-    quiz.innerHTML += "<label> <input type='radio' name='choices' value='D'>"+choiceD+"</label><br><br>";
-    quiz.innerHTML += "<button id='check-answer' onclick='checkAnswer()'>SubmitAnswer</button>";
+        questionAnswers.appendChild(button)
+        button.addEventListener("click", displaynextQuestion)
+    });
 }
 
-function checkAnswer() {
-    // getElementByName as we have an array which will loop throu
-    choices = document.getElementsByName("choices");
-    
-    for(var i=0; i<choices.length; i++) {
-        if(choices[i].checked) {
-            choice = choices[i].value;
 
+function displaynextQuestion(e) {
+
+    currentIndex++
+    if(currentIndex < questions.length) {
+        correction(e.target.innerText == nextQuestions.answer)
+        questionAnswers.innerHTML=""
+
+        if(currentIndex < questions.length) {
+            nextQuestions = questions[currentIndex]
+            displayQuestion(nextQuestions)
+
+        }else {
+            currentIndex = 0
+            displayQuestion(nextQuestions)
         }
-    }
-    // check answer if matched with correct choice
-    if(choice == questions[pos].answer) {
-        // each time value increases if answer is correct
-        correct++;
 
-        
-    } else {
-        // Time deducted with incorrect answer
-        timeRemaining = timeRemaining - 5
+    }else {
+        console.log("endgame")
+        endgame()
     }
-    // change position of which character user is on
-    pos++;
-    // renderQuestion function runs again to go to next question
-    renderQuestion();
-    
-    
-    
 }
-window.addEventListener("load", renderQuestion);
 
-nextBtn.addEventListener("click", function(endGame) {
-    endGame.preventDefault()
-    
-    //2. show submit page
-    submitSection.classList.remove("hide");
-    // hide the quizContainer
-    quizContainer.classList.add("hide");
-})
 
-function endGame() {
+function correction(response) {
 
-    if(timeRemaining == null) {
-        document.getElementById("check-answer").disabled = true;
-        
-    } else {
-        document.getElementById("check-answer").disabled = false;
+    if(response) {
+        alert.innerText = "Correct!"
+        console.log ("Correct!")
+    }else {
+        alert.innerText = "Wrong!"
+        count = count -15
+        timer.innerHTML = count
+        console.log("Wrong!")
     }
-    
-   clearInterval(intervalId);
+
+    setTimeout(function() {
+        alert.innerText = ""
+    }, 1000);
+
+}
+
+
+
+function endgame() {
+
+    clearInterval(timeInterval)
+    myScore.innerText = count
+    addScore.classList.remove("d-none")
+    timeCounter.classList.add("d-none")
+    quizQuestions.classList.add("d-none")
+   // addScore.classList.remove("d-none")
    
 }
-
-// submitBtn.addEventListener("click", function() {
-
-
-
-    // high score page show when submit button is clicked
-//    resultSection.classList.remove("hide");
-//    submitSection.classList.add("hide");
-    
-//})
