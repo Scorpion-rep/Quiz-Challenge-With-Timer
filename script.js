@@ -154,7 +154,6 @@ function correction(response) {
 }
 
 
-
 function endgame() {
 
     clearInterval(timeInterval)

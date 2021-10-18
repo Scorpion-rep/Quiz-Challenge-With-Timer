@@ -1,7 +1,7 @@
 const storedScores = JSON.parse(localStorage.getItem("userData")) || [];
 const highScoreArea = document.querySelector("#highScoresList");
 const backBtn = document.querySelector("#backButton");
-const clearBtn = document.querySelector("clearScores");
+const clearBtn = document.querySelector("#clearScores");
 
 
 function displayScores() {
@@ -25,10 +25,12 @@ backBtn.addEventListener("click", function () {
     location.href = "index.html";
 });
 
-clearBtn.addEventListener("click", function () {
+
+
+clearBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+    highScoreArea.innerHTML = "";
+    localStorage.clear()
+})
      
-    localStorage.removeItem(storedScores)
-    window.localStorage.clear();    
-     
-    
-});
+   

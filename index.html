@@ -33,20 +33,25 @@
                 
             </div>
             <div class="btnstart d-flex  flex-column justify-content-center mt-8 mb-10" > 
-                <p id="info">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by 15 seconds.
+                <p id="info">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by 10 seconds.
                 </p>
                 <button class="btn btn-primary btn-lg" id="btn-start">Start Quiz</button>
                 
             </div>
             
             <div class=" input-group mb-3 d-none" id="addscore">
-                <h5 class="d-block"><span id="score"></span></h5>
+                <div class="header">
+                    <h5 class="d-block"></h5>
+                    <h3 id="score"></h3>
+                </div>
+                
+                <div class="input-group-append">
                     <input type="text" class="form-control" placeholder="Enter your initials:"
-                    id="inputScore" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="input-group-text btn btn-primary" id="btnScore">Submit</button>
+                    id="inputScore" aria-describedby="basic-addon2"> 
 
-                    </div>
+                    <button class="input-group-text btn btn-primary" id="btnScore">Submit</button>
+
+                </div>
             </div>
         </div>
     </div>
