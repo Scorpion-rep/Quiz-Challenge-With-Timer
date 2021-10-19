@@ -1,14 +1,14 @@
-const quizQuestions = document.getElementById("quiz-questions");
-const timer = document.getElementById("timer");
-const btnStart = document.getElementById("btn-start");
-const timeCounter = document.getElementById("timecounter");
-const titleItem = document.getElementById("title-item");
-const questionAnswers = document.getElementById("question-answers");
-const myScore = document.getElementById("score");
-const btnScore = document.getElementById("btnScore");
-const addScore = document.getElementById("addscore")
-const alert = document.getElementById("alert");
-const info = document.getElementById("info");
+const quizQuestions = document.querySelector("#quiz-questions");
+const timer = document.querySelector("#timer");
+const startBtn = document.querySelector("#start-button");
+const timeCountDown = document.querySelector("#time-count");
+const titleItem = document.querySelector("#title-item");
+const questionAnswers = document.querySelector("#quiz-choices");
+const myScore = document.querySelector("#score");
+const btnScore = document.querySelector("#btnScore");
+const addScore = document.querySelector("#addscore")
+const alert = document.querySelector("#alert");
+const info = document.querySelector("#info");
 
 let currentIndex = 0;
 let score = 0;
@@ -46,7 +46,7 @@ let questions = [
 ]
 
 // start the game
-btnStart.addEventListener("click", startQuiz);
+startBtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
     if(storedScores !==null) {
@@ -54,8 +54,8 @@ function startQuiz() {
     }
 
     info.classList.add("d-none")
-    btnStart.classList.add("d-none")
-    timeCounter.classList.remove("d-none")
+    startBtn.classList.add("d-none")
+    timeCountDown.classList.remove("d-none")
     quizQuestions.classList.remove("d-none")
 
     nextQuestions = questions[currentIndex]
@@ -69,7 +69,7 @@ function startQuiz() {
 
 btnScore.addEventListener("click", function() {
 
-    let name = document.getElementById("inputScore").value
+    let name = document.querySelector("#user-input").value
     scorePage(name, count)
 });
 
@@ -142,7 +142,7 @@ function correction(response) {
         console.log ("Correct!")
     }else {
         alert.innerText = "Wrong!"
-        count = count -15
+        count = count -10
         timer.innerHTML = count
         console.log("Wrong!")
     }
@@ -159,8 +159,8 @@ function endgame() {
     clearInterval(timeInterval)
     myScore.innerText = count
     addScore.classList.remove("d-none")
-    timeCounter.classList.add("d-none")
+    timeCountDown.classList.add("d-none")
     quizQuestions.classList.add("d-none")
-   // addScore.classList.remove("d-none")
+  
    
 }

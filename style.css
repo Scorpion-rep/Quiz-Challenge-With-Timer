@@ -12,14 +12,20 @@ body {
     height: 100%;
 }
 .code-title {
+    display: flex;
+    flex-direction: row;
     font-weight: bolder;
-    font-size: 2.7rem;
-    align-items: center;
+    font-size: 2.7rem;    
     text-align: center;
-    position: relative;
+    position: fixed;
+    justify-content: center;
+}
+
+.divided {
+    padding-top: 35px;
 }
 .container {
-    background-color: rgb(212, 196, 238);
+    background-color: rgba(213, 201, 245, 0.418);
     width: 90%;
     height: 100%;
     display: flex;
@@ -30,37 +36,24 @@ body {
     margin: 0 auto;
     padding: 2rem;
 }
-/*.game-box {
+.game-box {
     background-color: #eeeeee;
     box-shadow:  0 0.4rem 1.4rem 0 rgb(23, 3, 36);
-} */
+} 
 
-
-#btn-start {
-    background-color: rgb(76, 9, 124);
-    border-radius: 10px;
-    border: none;
-    margin-bottom: 1rem;
- 
-    width: 20rem;   
-    font-size: 2.4rem;
-    text-align: center;
-    align-items: center;
-    height: 75px;
+.quiz-questions {
+    height: auto;
+    width: 80%;
 }
-#btn-start:hover {
-    cursor: pointer;
-    background-color: rgb(76, 9, 124);
-    box-shadow: 0 0.4rem 1.4rem 0 rgb(23, 3, 36);
-    transform: scale(1.03);
-}
-
-
-.text-info {
+.question-text {
     color: indigo;
-    font-size: 25px;
+    font-size: 1.5rem;
 }
 
+.btnstart {
+    display : flex;
+    align-items: center;
+}
 .btn-primary {
     background-color: indigo;
     color: white;
@@ -73,32 +66,61 @@ body {
 }
 .btn-primary:hover {
     cursor: pointer;
-    background-color: rgb(76, 9, 124);
+    background-color: rgb(31, 73, 189);
     transform: scale(1.03);
     box-shadow: 0 0.4rem 1.4rem 0 rgb(23, 3, 36);
 }
 
 .form-control {
-    height: 3rem;
-    max-width: 40rem;
-    margin-left: 10rem;
-    
+    display: flex;
+    height: 50px;
+    max-width: 400px;
+    margin-left: 40px;
+}
+.header {
+    display: grid;
+  
+    padding-bottom: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+}
+#info {
+    font-size: 1.5rem;
+    display: flex;
+}
+
+#start-button {
+    background-color: rgb(76, 9, 124);
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 1rem;    
+    display: inline-block;
+    width: 20rem;   
+    font-size: 2.4rem;
+    text-align: center;
+    align-items: center;
+    height: 75px;
+}
+#start-button:hover {
+    cursor: pointer;
+    background-color: rgb(76, 9, 124);
     box-shadow: 0 0.4rem 1.4rem 0 rgb(23, 3, 36);
     transform: scale(1.03);
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#info {
-    font-size: 1.7rem;
-}
-
 #score {
     position: relative;
+    font-size: 25px;
 }
 #btnScore {
-    width: 20rem;
+    display: flex;
+   
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
