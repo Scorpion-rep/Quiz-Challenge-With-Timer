@@ -29,8 +29,14 @@ There are 2 seperate files:
     + score.js : handle saving and clearing highScores with localStorage.
 
 # Mock up
-![alt-text](./assets/Quiz-game-questions.png)
+
 ![alt-text](./assets/Quiz-game-start.png)
+![alt-text](./assets/Quiz-game-questions.png)
 ![alt-text](./assets/Quiz-game-submit.png)
 ![alt-text](./assets/Quiz-game-score.png)
+
+# Deployed and GitHub page
+
+https://github.com/Scorpion-rep/Quiz-Challenge-With-Timer
+https://scorpion-rep.github.io/Quiz-Challenge-With-Timer/
 

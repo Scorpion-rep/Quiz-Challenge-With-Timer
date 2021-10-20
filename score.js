@@ -9,7 +9,7 @@ function displayScores() {
         let scoreList = document.createElement("ol");
         scoreList.className = "scoreListClass";
         for (var i = 0; i < storedScores.length; i++) {
-            var initials = storedScores[i].inits;
+            var initials = storedScores[i].userName;
             var scores = storedScores[i].userScore
             var scoreEntry = document.createElement("li")
             scoreEntry.innerHTML = initials + " " + scores;

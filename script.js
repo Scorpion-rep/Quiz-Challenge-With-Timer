@@ -45,9 +45,10 @@ let questions = [
     }
 ]
 
-// start the game
+// start the game => questions are displayed with multiple choices
 startBtn.addEventListener("click", startQuiz);
 
+// when the quiz starts => info section is hidden, timer and quiz displayed 
 function startQuiz() {
     if(storedScores !==null) {
         allScores = storedScores;
@@ -67,13 +68,7 @@ function startQuiz() {
 
 }
 
-btnScore.addEventListener("click", function() {
-
-    let name = document.querySelector("#user-input").value
-    scorePage(name, count)
-});
-
-// Time set
+// Timer starts to count down when the game start
 function gameTime() {
 
     timeInterval = setInterval(function() {
@@ -87,18 +82,7 @@ function gameTime() {
 
 }
 
-function scorePage(a, b) {
-
-    let userData = {
-        inits: a,
-        userScore: b
-    };
-    allScores.push(userData);
-
-    localStorage.setItem("userData", JSON.stringify(allScores));
-    location.href = "score.html";
-}
-
+// function to show questions and multiple choices
 function displayQuestion(question) {
     titleItem.innerText = question.title
     question.choices.forEach(element => {
@@ -111,7 +95,7 @@ function displayQuestion(question) {
     });
 }
 
-
+// questions are presented one after another with correction when choice is clicked until game end 
 function displaynextQuestion(e) {
 
     currentIndex++
@@ -134,7 +118,7 @@ function displaynextQuestion(e) {
     }
 }
 
-
+// function to give notification if the answer is correct or wrong
 function correction(response) {
 
     if(response) {
@@ -153,14 +137,33 @@ function correction(response) {
 
 }
 
-
+// when the game ends, timer stops => timer div is hidden and display the score submit page
 function endgame() {
 
     clearInterval(timeInterval)
     myScore.innerText = count
     addScore.classList.remove("d-none")
     timeCountDown.classList.add("d-none")
-    quizQuestions.classList.add("d-none")
-  
+    quizQuestions.classList.add("d-none")  
    
+}
+
+// when score button is clicked, score page take in username input and score
+btnScore.addEventListener("click", function() {
+
+    let name = document.querySelector("#user-input").value
+    scorePage(name, count)
+});
+
+// store the scores in localStorage with user name input
+function scorePage(a, b) {
+
+    let userData = {
+        userName: a,
+        userScore: b
+    };
+    allScores.push(userData);
+
+    localStorage.setItem("userData", JSON.stringify(allScores));
+    location.href = "score.html";
 }
