@@ -35,6 +35,14 @@ There are 2 seperate files:
 ![alt-text](./assets/Quiz-game-submit.png)
 ![alt-text](./assets/Quiz-game-score.png)
 
+![Quiz-game-start](https://user-images.githubusercontent.com/86839837/138100300-92e99102-d5e8-46e4-8ec0-186284b796f9.png)
+
+![Quiz-game-questions](https://user-images.githubusercontent.com/86839837/138100545-cb504fc6-41c1-4896-85a4-4ca9a7aa03b2.png)
+
+![Quiz-game-submit](https://user-images.githubusercontent.com/86839837/138100698-865528f3-9936-4421-a8a0-78eb55c95800.png)
+
+![Quiz-game-score](https://user-images.githubusercontent.com/86839837/138100866-cfe0ca6d-3275-4da7-a86b-722f8d3cc134.png)
+
 # GitHub page
 https://github.com/Scorpion-rep/Quiz-Challenge-With-Timer
 
