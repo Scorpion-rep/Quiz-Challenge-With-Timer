@@ -35,8 +35,9 @@ There are 2 seperate files:
 ![alt-text](./assets/Quiz-game-submit.png)
 ![alt-text](./assets/Quiz-game-score.png)
 
-# Deployed and GitHub page
-
+# GitHub page
 https://github.com/Scorpion-rep/Quiz-Challenge-With-Timer
+
+# Deployed page
 https://scorpion-rep.github.io/Quiz-Challenge-With-Timer/
 
